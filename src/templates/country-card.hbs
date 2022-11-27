@@ -1,0 +1,43 @@
+{{!-- const BASE_URL = 'https://restcountries.com/v3.1'; --}}
+{{!-- {{#each countries}}
+
+<div class="country-wrapper">
+    <img src="{{flags.svg}}" alt="Flag of {{name.official}}" width="25">
+    <h1>{{name.official}}</h1>
+</div>
+<p><b>Capital: </b>{{capital}}</p>
+
+<p><b>Languages: </b>{{#each languages}} {{this}}, {{/each}}</p>
+
+<p><b>Population: </b>{{population}}</p>
+{{/each}} --}}
+
+
+{{!-- const BASE_URL = 'https://restcountries.com/v3.1'; --}}
+{{!-- {{#each countries}}
+<div class="country-wrapper">
+    <img src="{{flags.svg}}" alt="Flag of {{name.official}}" width="25">
+    <h1>{{name.official}}</h1>
+</div>
+<p><b>Capital: </b>{{capital}}</p>
+<div class="languages-wrapper">
+    <b>Languages: </b>
+    <ul>{{#each languages}} <li>{{this}}</li> {{/each}}</ul>
+</div>
+<p><b>Population: </b>{{population}}</p>
+{{/each}} --}}
+{{!-- 
+
+{{!-- const BASE_URL = 'https://restcountries.com/v2'; --}}
+{{#each countries}}
+<div class="country-wrapper">
+    <img src="{{flags.svg}}" alt="Flag of {{name}}" width="25">
+    <h1>{{name}}</h1>
+</div>
+<p><b>Capital: </b>{{capital}}</p>
+<div class="languages-wrapper">
+    <b>Languages: </b>
+    <ul>{{#each languages}} <li>{{this.name}}</li> {{/each}}</ul>
+</div>
+<p><b>Population: </b>{{population}}</p>
+{{/each}} --}}
