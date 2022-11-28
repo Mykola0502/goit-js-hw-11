@@ -1,12 +1,11 @@
+import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import PicturesApiService from './js/picturesService';
+import { refs } from './js/refs';
 
-const refs = {
-  searchForm: document.querySelector('#search-form'),
-  galleryContainer: document.querySelector('.gallery'),
-  loadMoreBtn: document.querySelector('.load-more'),
-};
+const simpleligthbox = new SimpleLightbox('.gallery a');
 let totalHits = 0;
-
 const picturesApiService = new PicturesApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
@@ -16,6 +15,7 @@ refs.loadMoreBtn.hidden = true;
 
 function onSearch(e) {
   e.preventDefault();
+  refs.loadMoreBtn.hidden = true;
   // const { searchQuery } = e.target.elements;
   // const searchText = searchQuery.value.trim();
   picturesApiService.query = e.target.elements.searchQuery.value.trim();
@@ -24,7 +24,9 @@ function onSearch(e) {
 
   clearGalleryContainer();
   if (!picturesApiService.query) {
-    return alert('Заповніть будь ласка поле вводу');
+    refs.loadMoreBtn.hidden = true;
+    return Notiflix.Notify.info('Заповніть будь ласка поле вводу');
+    // return alert('Заповніть будь ласка поле вводу');
   }
   picturesApiService.resetPage();
   picturesApiService
@@ -32,9 +34,12 @@ function onSearch(e) {
     .then(pictures => {
       console.log(pictures.hits);
       totalHits += pictures.hits.length;
-      console.log(
+      Notiflix.Notify.success(
         `Hooray! We found ${totalHits} of ${pictures.totalHits} images.`
       );
+      // console.log(
+      //   `Hooray! We found ${totalHits} of ${pictures.totalHits} images.`
+      // );
       appendPicturesMarkup(pictures.hits);
       // refs.loadMoreBtn.disabled = false;
       refs.loadMoreBtn.hidden = false;
@@ -53,13 +58,19 @@ function onLoadMore() {
     .then(pictures => {
       console.log(pictures.hits);
       totalHits += pictures.hits.length;
-      console.log(
+      Notiflix.Notify.success(
         `Hooray! We found ${totalHits} of ${pictures.totalHits} images.`
       );
+      // console.log(
+      //   `Hooray! We found ${totalHits} of ${pictures.totalHits} images.`
+      // );
       appendPicturesMarkup(pictures.hits);
       if (totalHits >= pictures.totalHits) {
         refs.loadMoreBtn.hidden = true;
-        alert(`"We're sorry, but you've reached the end of search results.`);
+        Notiflix.Notify.info(
+          `We're sorry, but you've reached the end of search results.`
+        );
+        // alert(`We're sorry, but you've reached the end of search results.`);
       }
     })
     .catch(error => {
@@ -95,6 +106,17 @@ function createMarkup(arr) {
 
 function appendPicturesMarkup(pictures) {
   refs.galleryContainer.insertAdjacentHTML('beforeend', createMarkup(pictures));
+
+  simpleligthbox.refresh();
+
+  const { height: cardHeight } = document
+    .querySelector('.gallery')
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
 }
 
 function clearGalleryContainer() {

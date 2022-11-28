@@ -20,7 +20,7 @@ export default class PicturesApiService {
         orientation: 'horizontal',
         safesearch: true,
         page: `${this.page}`,
-        per_page: '40',
+        per_page: '200',
       },
     });
 
