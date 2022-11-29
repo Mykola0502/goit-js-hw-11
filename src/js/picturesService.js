@@ -10,7 +10,7 @@ export default class PicturesApiService {
   }
 
   async getPictures() {
-    console.log('До запиту: ', this);
+    // console.log('До запиту: ', this);
     const instance = axios.create({
       baseURL: 'https://pixabay.com/api/',
       params: {
@@ -20,12 +20,12 @@ export default class PicturesApiService {
         orientation: 'horizontal',
         safesearch: true,
         page: `${this.page}`,
-        per_page: '200',
+        per_page: '40',
       },
     });
 
     const response = await instance.get();
-    console.log(response);
+    // console.log(response);
 
     // if (response.status !== 200) {
     //   throw new Error(response.statusText);
@@ -40,7 +40,7 @@ export default class PicturesApiService {
       return;
     }
     this.page += 1;
-    console.log('Після запиту: ', this);
+    // console.log('Після запиту: ', this);
     return await response.data;
   }
 

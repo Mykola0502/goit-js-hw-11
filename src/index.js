@@ -63,7 +63,6 @@ function onLoadMore(entries, observer) {
 
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      console.log('Бачу 😎');
       picturesApiService
         .getPictures()
         .then(pictures => {

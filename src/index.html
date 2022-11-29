@@ -9,13 +9,20 @@
   </head>
   <body>
     <form class="search-form" id="search-form">
-      <input
-        type="text"
-        name="searchQuery"
-        autocomplete="off"
-        placeholder="Search images..."
-      />
-      <button type="submit">Search</button>
+      <div class="search-form__container">
+        <input
+          class="search-form__input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button class="search-form__submit" type="submit">
+          <svg class="menu-btn__icon" width="25" height="25">
+            <use href="./images/icons.svg#icon-loupe"></use>
+          </svg>
+        </button>
+      </div>
     </form>
 
     <div class="gallery">
