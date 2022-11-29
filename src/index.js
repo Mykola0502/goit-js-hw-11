@@ -11,7 +11,7 @@ import { refs } from './js/refs';
 const simpleligthbox = new SimpleLightbox('.gallery a');
 const options = {
   root: null,
-  rootMargin: '200px',
+  rootMargin: '100px',
   threshold: 1.0,
 };
 const observer = new IntersectionObserver(onLoadMore, options);
